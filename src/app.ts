@@ -1,11 +1,17 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan';
+import * as dotenv from 'dotenv';
 
 import ServiceFacade from './../core/services';
 import ResponseSender from './../core/rest/middleware/ResponseSender';
 import ErrorHandlers from './../core/rest/middleware/ErrorHandlers';
 import routes from './routes';
+
+const config = dotenv.config();
+if (config.error) {
+  throw config.error;
+}
 
 const app = express();
 

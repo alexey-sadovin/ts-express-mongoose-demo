@@ -1,6 +1,6 @@
-import IUser from './../../../../core/dal/model/IUser';
-import User from './../../model/User';
-import UserPasswordService from './../../../../core/services/UserPasswordService';
+import IUser from '../../../core/dal/model/IUser';
+import User from '../model/user/User';
+import UserPasswordService from '../../../core/services/UserPasswordService';
 
 export default class UserDataProducer {
   constructor(
@@ -11,8 +11,8 @@ export default class UserDataProducer {
     this.passwordService = passwordService;
   }
 
-  public create(): Promise<IUser> {
-    return new User(this.composeUserData()).save();
+  public async create(): Promise<IUser> {
+    return new User(await this.composeUserData()).save();
   }
 
   private async composeUserData(): Promise<object> {
