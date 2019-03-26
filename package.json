@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run lint & npm run compile",
     "lint": "tslint -c tslint.json -p tsconfig.json",
+    "compile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
