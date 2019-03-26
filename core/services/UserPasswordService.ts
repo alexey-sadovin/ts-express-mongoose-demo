@@ -11,6 +11,6 @@ export default class UserPasswordService {
   }
 
   public comparePasswords(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash)
+    return bcrypt.compare(password, hash);
   }
 }

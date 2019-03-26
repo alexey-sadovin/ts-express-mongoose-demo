@@ -1,8 +1,7 @@
 import * as mongoose from 'mongoose';
-import {Connection} from "mongoose";
 
 export default class MongoService {
-  private connection: Connection = mongoose.connection;
+  private connection: any = mongoose.connection;
 
   constructor(
     private readonly dbHost: string,
@@ -15,7 +14,7 @@ export default class MongoService {
   }
 
   public async connect(): Promise<any> {
-    const connectionPromise = new Promise(resolve =>
+    const connectionPromise = new Promise((resolve: () => void) =>
       this.connection.on('connected', () => {
         console.log('Mongo connected');
         resolve();
