@@ -1,6 +1,6 @@
 .idea/
 .nyc_output/
 node_modules/
-typings/
+build/
 *.log
 npm-debug.log*
