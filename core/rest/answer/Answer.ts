@@ -1,5 +1,7 @@
 import {Response, NextFunction} from 'express';
 import AnswerData from './AnswerData';
+import CustomErrorsFactory from './CustomErrorsFactory';
+import AnswerCodes from './AnswerCodes';
 
 export default class Answer {
   constructor(public res: Response, public next: NextFunction) {
@@ -7,8 +9,14 @@ export default class Answer {
     this.next = next;
   }
 
+  static CODES = AnswerCodes;
+
   static for(res: Response, next: NextFunction): Answer {
     return new Answer(res, next);
+  }
+
+  static custom(): CustomErrorsFactory {
+    return CustomErrorsFactory;
   }
 
   private addAnswer(status: Number, data?: any): void {
@@ -20,7 +28,7 @@ export default class Answer {
     }
   }
 
-  private addError(code: Number, errors: any) {
+  private addError(code: Number, errors: any): void {
     let data;
 
     if (errors !== undefined) {
@@ -34,35 +42,35 @@ export default class Answer {
     this.addAnswer(code, data);
   }
 
-  ok(data: any) {
+  public ok(data: any): void {
     this.addAnswer(200, data);
   }
 
-  created(data: any) {
+  public created(data: any): void {
     this.addAnswer(201, data);
   }
 
-  noContent() {
+  public noContent(): void {
     this.addAnswer(204);
   }
 
-  badRequest(data: any) {
+  public badRequest(data: any): void {
     this.addError(400, data);
   }
 
-  notAuthorized(data: any) {
+  public notAuthorized(data: any): void {
     this.addError(401, data);
   }
 
-  forbidden(data: any) {
+  public forbidden(data: any): void {
     this.addError(403, data);
   }
 
-  notFound(data: any) {
+  public notFound(data: any): void {
     this.addError(404, data);
   }
 
-  internal(data: Error|any) {
+  public internal(data: Error|any): void {
     this.addError(500, data);
   }
 }
