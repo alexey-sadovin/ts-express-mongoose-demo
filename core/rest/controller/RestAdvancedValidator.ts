@@ -2,7 +2,7 @@ import {Answer} from './../answer';
 import RestRequestData from './RestRequestData';
 
 export default abstract class RestAdvancedValidator {
-  private data: object;
+  private readonly data: object;
   private valid: boolean = true;
 
   constructor(
@@ -24,14 +24,19 @@ export default abstract class RestAdvancedValidator {
     return this.valid;
   }
 
-  public getData(): object {
+  public getData(): any {
     return this.data;
+  }
+
+  public answer(): Answer {
+    return Answer.for(this.reqData.res, this.reqData.next);
   }
 
   protected abstract async validate(): Promise<void>;
 
-  protected answer(): Answer {
-    return Answer.for(this.reqData.res, this.reqData.next);
+  protected invalidate(): RestAdvancedValidator {
+    this.valid = false;
+    return this;
   }
 }
 

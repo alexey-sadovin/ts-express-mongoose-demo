@@ -26,8 +26,8 @@ export default abstract class RestRouteController {
       if (await this.validateRequest()) {
         await this.processRequest();
       }
-    } catch (e) {
-      this.requestData.next(e);
+    } catch (err) {
+      this.requestData.next(err);
     }
   }
 
