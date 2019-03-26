@@ -1,4 +1,4 @@
-import {Schema, Model, model} from 'mongoose';
+import {Schema, model} from 'mongoose';
 import IUser from '../../../core/dal/model/IUser';
 
 const UserSchema: Schema = new Schema({
@@ -21,8 +21,5 @@ const UserSchema: Schema = new Schema({
   }
 });
 
-UserSchema.methods.fullName = function(): string {
-  return `${this.firstName} ${this.lastName}`;
-};
-
-export const User: Model<IUser> = model<IUser>('User', UserSchema);
+const User = model<IUser>('User', UserSchema);
+export default User;

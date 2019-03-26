@@ -1,4 +1,4 @@
-import {Schema, Model, model, Types} from 'mongoose';
+import {Schema, model, Types} from 'mongoose';
 import IComment from '../../../core/dal/model/IComment';
 
 const CommentSchema: Schema = new Schema({
@@ -13,4 +13,5 @@ const CommentSchema: Schema = new Schema({
   }
 });
 
-export const Comment: Model<IComment> = model<IComment>('Comment', CommentSchema);
+const Comment = model<IComment>('Comment', CommentSchema);
+export default Comment;

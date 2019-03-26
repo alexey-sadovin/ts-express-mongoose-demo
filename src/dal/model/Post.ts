@@ -1,4 +1,4 @@
-import {Schema, Model, model, Types} from 'mongoose';
+import {Schema, model, Types} from 'mongoose';
 import IPost from '../../../core/dal/model/IPost';
 
 const PostSchema: Schema = new Schema({
@@ -18,4 +18,5 @@ const PostSchema: Schema = new Schema({
   }
 });
 
-export const Post: Model<IPost> = model<IPost>('Post', PostSchema);
+const Post = model<IPost>('Post', PostSchema);
+export default Post;
