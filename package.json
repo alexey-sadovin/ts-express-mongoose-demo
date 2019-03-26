@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "build": "npm run lint & npm run compile",
+    "start": "npm run build && node build/src/app",
+    "build": "npm run lint && npm run compile",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "compile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.1",
     "@types/express-validator": "^3.0.0",
     "@types/lodash": "^4.14.123",
