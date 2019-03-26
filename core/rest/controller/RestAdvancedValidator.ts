@@ -2,21 +2,17 @@ import {Answer} from './../answer';
 import RestRequestData from './RestRequestData';
 
 export default abstract class RestAdvancedValidator {
+  private data: object;
+  private valid: boolean = true;
+
   constructor(
     private readonly reqData: RestRequestData,
     private readonly sanitizedInput?: object
   ) {
     this.reqData = reqData;
     this.sanitizedInput = sanitizedInput;
-  }
 
-  private data: object = {...this.sanitizedInput};
-  private valid: boolean = true;
-
-  abstract async validate(): Promise<void>;
-
-  protected answer(): Answer {
-    return Answer.for(this.reqData.res, this.reqData.next);
+    this.data = {...this.sanitizedInput};
   }
 
   public async process(): Promise<RestAdvancedValidator> {
@@ -31,6 +27,12 @@ export default abstract class RestAdvancedValidator {
   public getData(): object {
     return this.data;
   }
+
+  protected abstract async validate(): Promise<void>;
+
+  protected answer(): Answer {
+    return Answer.for(this.reqData.res, this.reqData.next);
+  }
 }
 
 export type RestAdvancedValidatorClass = {
@@ -38,4 +40,4 @@ export type RestAdvancedValidatorClass = {
     reqData: RestRequestData,
     sanitizedInput?: object
   ): RestAdvancedValidator;
-}
+};

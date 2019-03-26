@@ -18,46 +18,25 @@
       "check-open-brace",
       "check-whitespace"
     ],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-interfaces"
+    ],
     "no-var-keyword": true,
     "quotemark": [
       true,
       "single",
       "avoid-escape"
     ],
-    "semicolon": [
-      true,
-      "always",
-      "ignore-bound-class-methods"
-    ],
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-module",
-      "check-separator",
-      "check-type"
-    ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      },
-      {
-        "call-signature": "onespace",
-        "index-signature": "onespace",
-        "parameter": "onespace",
-        "property-declaration": "onespace",
-        "variable-declaration": "onespace"
-      }
-    ],
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "trailing-comma": false,
+    "interface-over-type-literal": false,
     "no-internal-module": true,
+    "callable-types": false,
     "no-trailing-whitespace": true,
-    "no-null-keyword": true,
+    "no-null-keyword": false,
     "prefer-const": true,
     "jsdoc-format": true
   }

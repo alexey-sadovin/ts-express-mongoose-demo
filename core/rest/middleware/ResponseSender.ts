@@ -14,6 +14,20 @@ class ResponseSender {
     this.next = next;
   }
 
+  public trySendingAnswer(final: boolean): void {
+    if (Answer.hasAnswer(this.res)) {
+      return this.sendResponse();
+    }
+
+    if (!final) {
+      return this.next();
+    }
+
+    Answer
+      .for(this.res, this.next)
+      .internal(CustomErrorFactory.code(NO_ANSWER_CODE));
+  }
+
   private sendResponse(): void {
     const answer = Answer.extractAnswer(this.res);
 
@@ -41,20 +55,6 @@ class ResponseSender {
           }
         )
       );
-  }
-
-  public trySendingAnswer(final: Boolean): void {
-    if (Answer.hasAnswer(this.res)) {
-      return this.sendResponse();
-    }
-
-    if (!final) {
-      return this.next();
-    }
-
-    Answer
-      .for(this.res, this.next)
-      .internal(CustomErrorFactory.code(NO_ANSWER_CODE));
   }
 }
 

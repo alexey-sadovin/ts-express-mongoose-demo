@@ -7,6 +7,8 @@ import {RestAdvancedValidatorClass} from './RestAdvancedValidator';
 import formatValidationError from './formatValidationError';
 
 export default abstract class RestRouteController {
+  private inputData?: object = null;
+
   constructor(
     protected requestData: RestRequestData,
     protected validatorClass: RestAdvancedValidatorClass
@@ -15,7 +17,21 @@ export default abstract class RestRouteController {
     this.validatorClass = validatorClass;
   }
 
-  private inputData?: object = null;
+  public answer(): Answer {
+    return Answer.for(this.requestData.res, this.requestData.next);
+  }
+
+  public async handleRequest(): Promise<void> {
+    try {
+      if (await this.validateRequest()) {
+        await this.processRequest();
+      }
+    } catch (e) {
+      this.requestData.next(e);
+    }
+  }
+
+  protected abstract async processRequest(): Promise<void>;
 
   private async validateRequest(): Promise<boolean> {
     const result = validationResult(this.requestData.req);
@@ -40,22 +56,6 @@ export default abstract class RestRouteController {
     this.inputData = advancedValidator.getData();
     return true;
   }
-
-  abstract async processRequest(): Promise<void>
-
-  public answer() : Answer {
-    return Answer.for(this.requestData.res, this.requestData.next);
-  }
-
-  public async handleRequest() : Promise<void> {
-    try {
-      if (await this.validateRequest()) {
-        await this.processRequest();
-      }
-    } catch (e) {
-      this.requestData.next(e);
-    }
-  }
 }
 
 export type RestRouteControllerClass = {
@@ -63,4 +63,4 @@ export type RestRouteControllerClass = {
     requestData: RestRequestData,
     validatorClass: RestAdvancedValidatorClass
   ): RestRouteController;
-}
+};

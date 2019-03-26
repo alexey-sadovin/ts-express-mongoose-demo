@@ -6,4 +6,4 @@ export default class RegisterController extends RestRouteController {
 
     this.answer().noContent();
   }
-};
+}
