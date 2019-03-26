@@ -1,11 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-
-import Answer from './../answer';
-import AnswerData from './../answer/AnswerData';
-
-function isBodyParserError(error: Error): boolean {
-  return error instanceof Error && Number.isInteger(error.statusCode);
-}
+import {Answer, AnswerData, CustomErrorFactory} from './../answer';
 
 export default {
   handleNoEndpointError(
@@ -16,10 +10,7 @@ export default {
     Answer
       .for(res, next)
       .notFound(
-        Answer
-          .custom()
-          .code(Answer.CODES.endpointNotFound)
-      );
+        CustomErrorFactory.code(Answer.CODES.endpointNotFound));
   },
 
   handleApplicationError(
@@ -32,19 +23,9 @@ export default {
       return next();
     }
 
-    if (isBodyParserError(error)) {
-      Answer
-        .for(res, next)
-        .badRequest(
-          Answer
-            .custom()
-            .notParsed(error.message)
-        );
-    } else {
-      Answer
-        .for(res, next)
-        .internal(error);
-    }
+    Answer
+      .for(res, next)
+      .internal(error);
 
     next();
   }

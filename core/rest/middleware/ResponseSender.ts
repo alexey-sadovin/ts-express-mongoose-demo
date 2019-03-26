@@ -1,9 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
+import {Answer, AnswerData, CustomErrorFactory} from './../answer';
 
-import Answer from './../answer';
-import AnswerData from './../answer/AnswerData';
-
-const NO_ANSWER_CODE: String = 'NO_ANSWER_PROVIDED';
+const NO_ANSWER_CODE: string = 'NO_ANSWER_PROVIDED';
 
 class ResponseSender {
   constructor(
@@ -35,7 +33,7 @@ class ResponseSender {
       .status(500)
       .json(
         Object.assign(
-          Answer.custom().code(Answer.CODES.internal),
+          CustomErrorFactory.code(Answer.CODES.internal),
           {
             name: answer.data.name,
             message: answer.data.message,
@@ -56,11 +54,7 @@ class ResponseSender {
 
     Answer
       .for(this.res, this.next)
-      .internal(
-        Answer
-          .custom()
-          .code(NO_ANSWER_CODE)
-      );
+      .internal(CustomErrorFactory.code(NO_ANSWER_CODE));
   }
 }
 

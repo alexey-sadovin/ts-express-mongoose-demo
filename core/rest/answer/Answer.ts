@@ -1,6 +1,5 @@
 import {Response, NextFunction} from 'express';
 import AnswerData from './AnswerData';
-import CustomErrorsFactory from './CustomErrorsFactory';
 import AnswerCodes from './AnswerCodes';
 
 export default class Answer {
@@ -13,10 +12,6 @@ export default class Answer {
 
   static for(res: Response, next: NextFunction): Answer {
     return new Answer(res, next);
-  }
-
-  static custom(): CustomErrorsFactory {
-    return CustomErrorsFactory;
   }
 
   static hasAnswer(res: Response) {

@@ -1,15 +1,15 @@
 import {validationResult} from 'express-validator/check';
 import {matchedData} from 'express-validator/filter';
 
-import Answer from './../answer';
+import {Answer} from './../answer';
 import RestRequestData from './RestRequestData';
-import RestAdvancedValidator from './RestAdvancedValidator';
+import {RestAdvancedValidatorClass} from './RestAdvancedValidator';
 import formatValidationError from './formatValidationError';
 
 export default abstract class RestRouteController {
   constructor(
     protected requestData: RestRequestData,
-    protected validatorClass: typeof RestAdvancedValidator
+    protected validatorClass: RestAdvancedValidatorClass
   ) {
     this.requestData = requestData;
     this.validatorClass = validatorClass;
@@ -56,4 +56,11 @@ export default abstract class RestRouteController {
       this.requestData.next(e);
     }
   }
+}
+
+export type RestRouteControllerClass = {
+  new (
+    requestData: RestRequestData,
+    validatorClass: RestAdvancedValidatorClass
+  ): RestRouteController;
 }

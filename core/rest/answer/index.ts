@@ -1,3 +1,9 @@
 import Answer from './Answer';
+import AnswerData from './AnswerData';
+import CustomErrorFactory from './CustomErrorFactory';
 
-export default Answer;
+export {
+  Answer,
+  AnswerData,
+  CustomErrorFactory
+};

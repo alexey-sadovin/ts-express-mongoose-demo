@@ -1,16 +1,16 @@
 import {Request, Response, NextFunction} from 'express';
 
-import RestRouteController from './RestRouteController';
-import RestAdvancedValidator from './RestAdvancedValidator';
 import RestRequestData from './RestRequestData';
+import {RestRouteControllerClass} from './RestRouteController';
+import {RestAdvancedValidatorClass} from './RestAdvancedValidator';
 
 export default function createController(
-  RestRouteControllerClass: typeof RestRouteController,
-  RestAdvancedValidatorClass?: typeof RestAdvancedValidator
+  controllerClass: RestRouteControllerClass,
+  validatorClass?: RestAdvancedValidatorClass
 ): Function {
   return (req: Request, res: Response, next: NextFunction) => {
     const requestData = new RestRequestData(req, res, next);
-    return new RestRouteControllerClass(requestData, RestAdvancedValidatorClass)
+    return new controllerClass(requestData, validatorClass)
       .handleRequest();
   };
 }
