@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import Answer from './../answer';
 
-export default function formatValidationError(originalError: any): Object {
+export default function formatValidationError(originalError: any): object {
   return Answer
     .custom()
     .code(

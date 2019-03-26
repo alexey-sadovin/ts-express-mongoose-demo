@@ -3,15 +3,15 @@ import RestRequestData from './RestRequestData';
 
 export default abstract class RestAdvancedValidator {
   constructor(
-    private reqData: RestRequestData,
-    private readonly sanitizedInput?: Object
+    private readonly reqData: RestRequestData,
+    private readonly sanitizedInput?: object
   ) {
     this.reqData = reqData;
     this.sanitizedInput = sanitizedInput;
   }
 
-  private data: Object = {...this.sanitizedInput};
-  private valid: Boolean = true;
+  private data: object = {...this.sanitizedInput};
+  private valid: boolean = true;
 
   abstract async validate(): Promise<void>;
 
@@ -24,11 +24,11 @@ export default abstract class RestAdvancedValidator {
     return this;
   }
 
-  public isValid(): Boolean {
+  public isValid(): boolean {
     return this.valid;
   }
 
-  public getData(): Object {
+  public getData(): object {
     return this.data;
   }
 }

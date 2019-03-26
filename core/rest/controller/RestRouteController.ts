@@ -15,9 +15,9 @@ export default abstract class RestRouteController {
     this.validatorClass = validatorClass;
   }
 
-  private inputData?: Object = null;
+  private inputData?: object = null;
 
-  private async validateRequest(): Promise<Boolean> {
+  private async validateRequest(): Promise<boolean> {
     const result = validationResult(this.requestData.req);
     if (!result.isEmpty()) {
       this.answer()

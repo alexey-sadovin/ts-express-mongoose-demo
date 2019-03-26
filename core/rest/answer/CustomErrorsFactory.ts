@@ -1,7 +1,7 @@
 import AnswerCodes from './AnswerCodes';
 
 export default class CustomErrorsFactory {
-  static code(code: String, reason?: String, fields?: Object): Object {
+  static code(code: string, reason?: string, fields?: object): object {
     const result = {code};
     if (reason) {
       Object.assign(result, {reason});
@@ -14,15 +14,19 @@ export default class CustomErrorsFactory {
     return result;
   }
 
-  static required(param: String): Object {
+  static required(param: string): object {
     return CustomErrorsFactory.code(AnswerCodes.validation, AnswerCodes.required, {param});
   }
 
-  static duplicate(param: String): Object {
+  static duplicate(param: string): object {
     return CustomErrorsFactory.code(AnswerCodes.validation, AnswerCodes.duplicate, {param});
   }
 
-  static invalid(param: String): Object {
+  static invalid(param: string): object {
     return CustomErrorsFactory.code(AnswerCodes.validation, AnswerCodes.invalid, {param});
+  }
+
+  static notParsed(param: string): object {
+    return CustomErrorsFactory.code(AnswerCodes.validation, AnswerCodes.notParsed, {param});
   }
 }

@@ -19,7 +19,15 @@ export default class Answer {
     return CustomErrorsFactory;
   }
 
-  private addAnswer(status: Number, data?: any): void {
+  static hasAnswer(res: Response) {
+    return Boolean(res.locals.answer);
+  }
+
+  static extractAnswer(res: Response): AnswerData {
+    return res.locals.answer;
+  }
+
+  private addAnswer(status: number, data?: any): void {
     const answerData: AnswerData = new AnswerData(status, data);
 
     this.res.locals.answer = answerData;
@@ -28,7 +36,7 @@ export default class Answer {
     }
   }
 
-  private addError(code: Number, errors: any): void {
+  private addError(code: number, errors: any): void {
     let data;
 
     if (errors !== undefined) {
