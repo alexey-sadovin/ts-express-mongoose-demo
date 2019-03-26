@@ -1,4 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
+import ServiceFacade from './../../services';
 
 export default class RestRequestData {
   constructor(
@@ -9,5 +10,9 @@ export default class RestRequestData {
     this.req = req;
     this.res = res;
     this.next = next;
+  }
+
+  public getServices(): ServiceFacade {
+    return this.res.app.locals.services;
   }
 }

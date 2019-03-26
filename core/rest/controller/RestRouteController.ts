@@ -7,7 +7,7 @@ import {RestAdvancedValidatorClass} from './RestAdvancedValidator';
 import formatValidationError from './formatValidationError';
 
 export default abstract class RestRouteController {
-  private inputData?: object = null;
+  protected inputData?: object = null;
 
   constructor(
     protected requestData: RestRequestData,
