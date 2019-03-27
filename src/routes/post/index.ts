@@ -1,5 +1,7 @@
 import * as express from 'express';
 
+import commentRoutes from './comment';
+
 import createController from './../../../core/rest/controller/createController';
 import TokenDecoder from './../../../core/rest/middleware/TokenDecoder';
 
@@ -11,10 +13,12 @@ import GetPostValidator from './validation/GetPostValidator';
 
 import UpdatePostController from './controllers/UpdatePostController';
 import UpdatePostValidator from './validation/UpdatePostValidator';
+import UpdatePostAdvancedValidator from './validation/UpdatePostAdvancedValidator';
 
 const router = express.Router({});
 
 router.use(TokenDecoder.decode);
+router.use('/', commentRoutes);
 
 router.post('/',
   CreatePostValidator.validate(),
@@ -28,7 +32,7 @@ router.get('/:postId',
 
 router.put('/:postId',
   UpdatePostValidator.validate(),
-  createController(UpdatePostController)
+  createController(UpdatePostController, UpdatePostAdvancedValidator)
 );
 
 export default router;

@@ -6,7 +6,7 @@ export default abstract class RestAdvancedValidator {
   private valid: boolean = true;
 
   constructor(
-    private readonly reqData: RestRequestData,
+    protected readonly reqData: RestRequestData,
     private readonly sanitizedInput?: object
   ) {
     this.reqData = reqData;
