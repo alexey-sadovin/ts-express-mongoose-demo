@@ -2,7 +2,7 @@ import {Answer} from './../answer';
 import RestRequestData from './RestRequestData';
 
 export default abstract class RestAdvancedValidator {
-  private readonly data: object;
+  protected data: object;
   private valid: boolean = true;
 
   constructor(

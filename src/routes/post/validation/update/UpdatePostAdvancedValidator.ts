@@ -19,7 +19,7 @@ export default class UpdatePostAdvancedValidator extends RestAdvancedValidator {
         .answer()
         .notFound(CustomErrorFactory.code(POST_NOT_FOUND));
     }
-    
+
     if (!post.owner.equals(userId)) {
       this
         .invalidate()
