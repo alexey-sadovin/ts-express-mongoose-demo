@@ -8,6 +8,6 @@ export default class RegistrationController extends RestRouteController {
       this.getServices().getUserPasswordService()
     );
 
-    this.answer().ok(await producer.create());
+    this.answer().created(await producer.create());
   }
 }
