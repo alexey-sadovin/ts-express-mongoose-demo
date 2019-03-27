@@ -13,7 +13,7 @@ export default class LoginController extends RestRouteController {
       return this.invalidate();
     }
 
-    const isSamePassword = await this
+    const isSamePassword = await this.requestData
       .getServices()
       .getUserPasswordService()
       .comparePasswords(password, user.password);
@@ -23,7 +23,7 @@ export default class LoginController extends RestRouteController {
     }
 
     this.answer().ok({
-      token: await this
+      token: await this.requestData
         .getServices()
         .getUserTokenService()
         .encode({
