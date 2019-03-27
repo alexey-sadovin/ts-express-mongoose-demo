@@ -1,21 +1,8 @@
 import {Schema, model} from 'mongoose';
 
-import IUser from '../../../../core/dal/model/IUser';
+import IUser from './../../../../core/dal/model/IUser';
+import LengthValidator from './../../../../core/helpers/LengthValidator';
 import Constraints from './Constraints';
-
-interface IConstraints {
-  minLength: number,
-  maxLength: number
-}
-
-function checkLength(constraints: IConstraints): (value: string) => boolean {
-  return (value: string) => {
-    const length: number = value.length;
-
-    return constraints.minLength <= length &&
-      length <= constraints.maxLength;
-  };
-}
 
 const UserSchema: Schema = new Schema({
   email: {
@@ -30,12 +17,12 @@ const UserSchema: Schema = new Schema({
   firstName: {
     type: String,
     trim: true,
-    validate: checkLength(Constraints.firstName)
+    validate: LengthValidator.check(Constraints.firstName)
   },
   lastName: {
     type: String,
     trim: true,
-    validate: checkLength(Constraints.lastName)
+    validate: LengthValidator.check(Constraints.lastName)
   }
 });
 
