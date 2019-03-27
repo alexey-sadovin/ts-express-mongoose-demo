@@ -1,9 +1,12 @@
 import MongoService from './MongoService';
-import UserPasswordService from './UserPasswordService';
+import UserPasswordService from './user/UserPasswordService';
+import UserTokenService from './user/UserTokenService';
 
 const SERVICES = {
   mongo: 'mongo',
-  userPassword: 'userPassword'
+
+  userPassword: 'userPassword',
+  userToken: 'userToken'
 };
 
 export default class ServiceFacade {
@@ -24,6 +27,14 @@ export default class ServiceFacade {
       new UserPasswordService(
         Number.parseInt(process.env.USER_PASSWORD_SALT_LENGTH, 10))
     );
+
+    this.services.set(
+      SERVICES.userToken,
+      new UserTokenService(
+        process.env.USER_JWT_PRIVATE_KEY_PATH,
+        Number.parseInt(process.env.JWT_EXPIRATION_TIME, 10)
+      )
+    );
   }
 
   public getMongoService(): MongoService {
@@ -32,5 +43,9 @@ export default class ServiceFacade {
 
   public getUserPasswordService(): UserPasswordService {
     return this.services.get(SERVICES.userPassword);
+  }
+
+  public getUserTokenService(): UserTokenService {
+    return this.services.get(SERVICES.userToken);
   }
 }
