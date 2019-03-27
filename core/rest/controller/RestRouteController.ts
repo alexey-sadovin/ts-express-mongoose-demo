@@ -32,8 +32,14 @@ export default abstract class RestRouteController {
     }
   }
 
+  // todo: move to RestRequestData class
   public getServices(): ServiceFacade {
     return this.requestData.res.app.locals.services;
+  }
+
+  // todo: move to RestRequestData class
+  public getUserId(): string {
+    return this.requestData.res.app.locals.user.id;
   }
 
   protected abstract async processRequest(): Promise<void>;
