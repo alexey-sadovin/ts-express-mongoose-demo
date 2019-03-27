@@ -5,9 +5,10 @@ import {Answer} from './../answer';
 import RestRequestData from './RestRequestData';
 import {RestAdvancedValidatorClass} from './RestAdvancedValidator';
 import formatValidationError from './formatValidationError';
+import ServiceFacade from '../../services';
 
 export default abstract class RestRouteController {
-  protected inputData?: object = null;
+  protected inputData: any;
 
   constructor(
     protected requestData: RestRequestData,
@@ -29,6 +30,10 @@ export default abstract class RestRouteController {
     } catch (err) {
       this.requestData.next(err);
     }
+  }
+
+  public getServices(): ServiceFacade {
+    return this.requestData.res.app.locals.services;
   }
 
   protected abstract async processRequest(): Promise<void>;
