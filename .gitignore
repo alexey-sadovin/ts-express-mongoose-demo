@@ -2,7 +2,6 @@
 .nyc_output/
 node_modules/
 build/
-keys/
 .env
 *.log
 npm-debug.log*

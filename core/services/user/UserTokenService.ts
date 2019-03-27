@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as jwt from 'jsonwebtoken';
 
 interface IJwtUserPayload {
@@ -6,13 +5,11 @@ interface IJwtUserPayload {
 }
 
 export default class UserTokenService {
-  private readonly privateKey: Buffer;
-
   constructor(
-    private privateKeyPath: string,
+    private readonly privateKey: string,
     private readonly tokenExpirationTime: number
   ) {
-    this.privateKey = fs.readFileSync(privateKeyPath);
+    this.privateKey = privateKey;
     this.tokenExpirationTime = tokenExpirationTime;
   }
 
@@ -37,10 +34,10 @@ export default class UserTokenService {
     });
   }
 
-  private decorateJwtResponse(resolve: Function, reject: Function) {
+  private decorateJwtResponse(resolve: any, reject: any) {
     return (err: Error, result: any): () => void => {
       if (err) {
-        return reject(err)
+        return reject(err);
       }
       resolve(result);
     };

@@ -5,9 +5,7 @@ export default class RegistrationController extends RestRouteController {
   public async processRequest(): Promise<void> {
     const producer: UserDataProducer = new UserDataProducer(
       this.inputData,
-      this.requestData
-        .getServices()
-        .getUserPasswordService()
+      this.getServices().getUserPasswordService()
     );
 
     this.answer().ok(await producer.create());

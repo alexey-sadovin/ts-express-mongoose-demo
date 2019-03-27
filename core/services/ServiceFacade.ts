@@ -31,7 +31,7 @@ export default class ServiceFacade {
     this.services.set(
       SERVICES.userToken,
       new UserTokenService(
-        process.env.USER_JWT_PRIVATE_KEY_PATH,
+        process.env.JWT_PRIVATE_KEY,
         Number.parseInt(process.env.JWT_EXPIRATION_TIME, 10)
       )
     );

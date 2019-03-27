@@ -1,6 +1,6 @@
 import IUser from '../../../core/dal/model/IUser';
 import User from '../model/user/User';
-import UserPasswordService from '../../../core/services/UserPasswordService';
+import UserPasswordService from '../../../core/services/user/UserPasswordService';
 
 export default class UserDataProducer {
   constructor(
