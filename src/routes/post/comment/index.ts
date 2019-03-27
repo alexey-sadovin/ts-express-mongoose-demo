@@ -10,6 +10,10 @@ import GetCommentController from './controllers/GetCommentController';
 import GetCommentValidator from './validation/get/GetCommentValidator';
 import GetCommentAdvancedValidator from './validation/get/GetCommentAdvancedValidator';
 
+import UpdateCommentController from './controllers/UpdateCommentController';
+import UpdateCommentValidator from './validation/update/UpdateCommentValidator';
+import UpdateCommentAdvancedValidator from './validation/update/UpdateCommentAdvancedValidator';
+
 const router = express.Router({});
 
 router.post('/:postId/comments',
@@ -20,6 +24,11 @@ router.post('/:postId/comments',
 router.get('/:postId/comments/:commentId',
   GetCommentValidator.validate(),
   createController(GetCommentController, GetCommentAdvancedValidator)
+);
+
+router.put('/:postId/comments/:commentId',
+  UpdateCommentValidator.validate(),
+  createController(UpdateCommentController, UpdateCommentAdvancedValidator)
 );
 
 export default router;
