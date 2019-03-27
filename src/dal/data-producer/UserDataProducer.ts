@@ -4,7 +4,7 @@ import UserPasswordService from '../../../core/services/user/UserPasswordService
 
 export default class UserDataProducer {
   constructor(
-    private readonly user: any,
+    private readonly user: IUser,
     private readonly passwordService: UserPasswordService
   ) {
     this.user = user;
