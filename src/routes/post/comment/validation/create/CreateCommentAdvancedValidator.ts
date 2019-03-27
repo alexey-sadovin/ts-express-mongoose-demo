@@ -1,6 +1,6 @@
-import RestAdvancedValidator from './../../../../../core/rest/controller/RestAdvancedValidator';
-import {CustomErrorFactory} from './../../../../../core/rest/answer';
-import Post from './../../../../dal/model/post/Post';
+import RestAdvancedValidator from './../../../../../../core/rest/controller/RestAdvancedValidator';
+import {CustomErrorFactory} from './../../../../../../core/rest/answer';
+import Post from './../../../../../dal/model/post/Post';
 
 const POST_NOT_FOUND: string = 'POST_NOT_FOUND';
 

@@ -1,6 +1,6 @@
-import RestAdvancedValidator from './../../../../core/rest/controller/RestAdvancedValidator';
-import {CustomErrorFactory} from './../../../../core/rest/answer';
-import User from './../../../dal/model/user/User';
+import RestAdvancedValidator from './../../../../../core/rest/controller/RestAdvancedValidator';
+import {CustomErrorFactory} from './../../../../../core/rest/answer';
+import User from './../../../../dal/model/user/User';
 
 const EMAIL_INVALID: string = 'EMAIL_INVALID';
 

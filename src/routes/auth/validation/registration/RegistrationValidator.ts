@@ -1,7 +1,7 @@
 import {RequestHandler} from 'express';
 import * as validator from 'express-validator/check';
 
-import Constraints from './../../../dal/model/user/Constraints';
+import Constraints from './../../../../dal/model/user/Constraints';
 
 export default class RegistrationValidator {
   public static validate(): RequestHandler[] {

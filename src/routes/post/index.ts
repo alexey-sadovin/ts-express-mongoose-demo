@@ -12,8 +12,8 @@ import GetPostController from './controllers/GetPostController';
 import GetPostValidator from './validation/GetPostValidator';
 
 import UpdatePostController from './controllers/UpdatePostController';
-import UpdatePostValidator from './validation/UpdatePostValidator';
-import UpdatePostAdvancedValidator from './validation/UpdatePostAdvancedValidator';
+import UpdatePostValidator from './validation/update/UpdatePostValidator';
+import UpdatePostAdvancedValidator from './validation/update/UpdatePostAdvancedValidator';
 
 const router = express.Router({});
 
