@@ -2,6 +2,7 @@ import {Schema, model} from 'mongoose';
 
 import IUser from './../../../../core/dal/model/IUser';
 import LengthValidator from './../../../../core/helpers/LengthValidator';
+import JsonTransformer from './../../../../core/helpers/JsonTransformer';
 import Constraints from './Constraints';
 
 const UserSchema: Schema = new Schema({
@@ -25,6 +26,14 @@ const UserSchema: Schema = new Schema({
     validate: LengthValidator.check(Constraints.lastName)
   }
 });
+
+const AVAILABLE_FIELDS: string[] = [
+  'email',
+  'firstName',
+  'lastName'
+];
+
+UserSchema.set('toJSON', JsonTransformer.get(AVAILABLE_FIELDS));
 
 const User = model<IUser>('User', UserSchema);
 export default User;
