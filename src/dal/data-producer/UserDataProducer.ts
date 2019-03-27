@@ -1,8 +1,10 @@
 import IUser from '../../../core/dal/model/IUser';
+import IDataProducer from '../../../core/dal/IDataProducer';
+
 import User from '../model/user/User';
 import UserPasswordService from '../../../core/services/user/UserPasswordService';
 
-export default class UserDataProducer {
+export default class UserDataProducer implements IDataProducer {
   constructor(
     private readonly user: IUser,
     private readonly passwordService: UserPasswordService
