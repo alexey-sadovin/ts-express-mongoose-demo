@@ -1,7 +1,7 @@
 import IPost from '../../../core/dal/model/IPost';
 import IDataProducer from '../../../core/dal/IDataProducer';
 
-import Post from '../model/Post';
+import Post from './../model/post/Post';
 
 export default class PostDataProducer implements IDataProducer {
   constructor(
